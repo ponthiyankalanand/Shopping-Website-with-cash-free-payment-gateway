@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+   <!--bootstrap-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/flexslider.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/camera.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/jquery.bxslider.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+
+  <!-- Theme skin -->
+  <link href="{% static 'color/default.css'%}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'ico/apple-touch-icon-144-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed'%}" sizes="114x114" href="{% static 'ico/apple-touch-icon-114-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'ico/apple-touch-icon-72-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" href="{% static 'ico/apple-touch-icon-57-precomposed.png'%}" />
+  <link rel="shortcut icon" href="{% static 'ico/favicon.png'%}" />
+</head>
+
+<body>
+<div id=" ">
+<!-- start header -->
+{% include "include/header.html" %}
+<!-- end header -->
+<!--order window-->
+<div class="Container-fluid">
+ 
+    <div class="row ">
+      <div class="col-sm-4">
+      </div>
+       <div class="col-sm-4">
+         <center>
+          <div class="text-justify">
+            <div class="form-group">
+              <h1><u>Order Details</u></h1>
+            </div>
+            <div class="form-group">
+            <p>Product Name: {{obj.pname}}</p>
+            </div>
+            <div class="form-group">
+            <p>Quantity: {{obj.qun}}</p>
+            </div>
+            <div class="form-group">
+            <p>Total price: {{obj.price}}/-</p>
+            </div>
+            <div class="form-group">
+            <h1><u>Address Details</u></h1></p>
+            </div>
+            <div class="form-group">
+            <p>Name: {{obj.name}}</p>
+            </div>
+            <div class="form-group">
+            <p>E-mail: {{obj.email}}</p>
+            </div>
+            <div class="form-group">
+            <p>House Name: {{obj.houseName}}</p>
+            </div>
+            <div class="form-group">
+            <p>Post Box: {{obj.post}}</p>
+            </div>
+            <div class="form-group">
+            <p>PIN: {{obj.pin}}</p>
+            </div>
+            <div class="form-group">
+            <p>Land Mark: {{obj.land}}</p>
+            </div>
+            <div class="form-group">
+            <p>City: {{obj.city}}</p>
+            </div>
+            <div class="form-group">
+            <p>District: {{obj.dist}}</p>
+            </div>
+            <div class="form-group">
+            <p>State: {{obj.state}}</p>
+            </div>
+            <div class="form-group">
+            <p>Country: {{obj.country}}</p>
+            </div>
+            <div class="form-group">
+            <p>Mob: {{obj.mob}}</p>
+          </div>
+        </div>
+          <div class="form-group">
+            <form action="checkoutOrder" method="post">{% csrf_token %} 
+              <input type="hidden"  name="code" value="{{ obj.code }}">
+              <button id="placeOrder" class="btn-lg btn-info">Place Order</button>
+          </div> 
+         </center>
+       </div>
+    </div>
+  </div>
+</div>
+<!--end-orderwindow-->
+<!--footer start--> 
+<div class="form-group">
+    {% include "include/footer.html" %}
+</div>
+<!--footer end-->    
+  <a href="#" class="scrollup"><i class="{% static 'icon-angle-up icon-square icon-bglight icon-2x'%}"></i></a>
+</body>
+</html>

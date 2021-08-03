@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form id="redirectForm" method="post" action="https://test.cashfree.com/billpay/checkout/post/submit">
+    <input type="hidden" name="appId" value="{{obj.appId}}"/>
+    <input type="hidden" name="orderId" value="{{obj.orderId}}"/>
+    <input type="hidden" name="orderAmount" value="{{obj.orderAmount}}"/>
+    <input type="hidden" name="customerName" value="{{obj.customerName}}"/>
+    <input type="hidden" name="customerEmail" value="{{obj.customerEmail}}"/>
+    <input type="hidden" name="customerPhone" value="{{obj.customerPhone}}"/>
+    <input type="hidden" name="returnUrl" value="{{obj.returnUrl}}"/>
+    <input type="hidden" name="notifyUrl" value="{{obj.notifyUrl}}"/>
+    <input type="hidden" name="signature" value="{{obj.signature}}"/>
+  </form>
+  <script>document.getElementById("redirectForm").submit();</script>
+</body>
+</html>

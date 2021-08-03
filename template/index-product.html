@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+<!--bootstrap-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/flexslider.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/camera.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/jquery.bxslider.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+
+  <!-- Theme skin -->
+  <link href="{% static 'color/default.css'%}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'ico/apple-touch-icon-144-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed'%}" sizes="114x114" href="{% static 'ico/apple-touch-icon-114-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'ico/apple-touch-icon-72-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" href="{% static 'ico/apple-touch-icon-57-precomposed.png'%}" />
+  <link rel="shortcut icon" href="{% static 'ico/favicon.png'%}" />
+    <style type="text/css">
+  .solid {
+  border-style: solid;
+  color: green;}
+  </style>
+</head>
+<body> 
+<!-- start header -->
+  {% include "include/header.html" %}
+<!-- end header -->
+<!-- section featured -->
+<section id="featured">
+<div class="container">
+<div class="row">
+   <div class="col-sm-6">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="/media/{{obj.pimg1}}" alt="img1" style="width:100%;">
+      </div>
+
+      <div class="item">
+        <img src="/media/{{obj.pimg2}}" alt="img2" style="width:100%;">
+      </div>
+    
+      <div class="item">
+        <img src="/media/{{obj.pimg3}}" alt="img3" style="width:100%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<div class="col-sm-6"><br/>
+        <center>
+       <div class="form-group">
+         <h2><u> Product Details </u></h2>
+        </div>
+        <div class="form-group">
+          Product Name: {{obj.pname}}
+        </div>
+        <div class="form-group">
+          Product Details: {{obj.pdisc}}
+        </div>
+        <div class="form-group">
+          Availability
+        {% if obj.count == 0 %}
+        <font color=red> NO ({{obj.count}})</font>
+        {% else %}
+        <font color=green> YES ({{obj.count}})</font>
+        {% endif %}
+        </div>
+        <div class="form-group">
+          Price: {{obj.pprice}}/-
+        </div>
+      </center>
+   </div>
+      </div>
+</div>
+</div>
+</section>
+
+<!-- /section featured -->
+      <section id="content">
+        <div class="container">
+          <div class="row">
+ 
+          </div> 
+        </div>
+      </section>
+      <hr/>
+      <center>
+        {% if obj.count != 0 %}
+        {% include "include/cartButton.html" %}
+        {% endif %}        
+      </center>
+     <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <h4>Write your Review</h4>
+            {% for message in messages %}
+            <p><font color=red>{{message}}</font></p>
+            {% endfor %}
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+            <form action="Review" method="post" role="form" class="contactForm">
+               {% csrf_token %}
+                <div class="col-sm-8 form-group">
+                  <input type="number" name="code" id="subject" placeholder="Enter Your Code" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validation"></div>
+                </div>
+                <div class="col-sm-8 form-group">
+                  <input type="text" name="name" id="subject" placeholder="Enter Name" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validation"></div>
+                </div>
+                <div class="col-sm-8 form-group">
+                  <textarea name="message" rows="5" data-rule="required" data-msg="Please write something for us"
+                    placeholder="Message"></textarea>
+                  <div class="validation"></div>
+                  <div class="text-center">
+                    <button class="btn-lg btn-success" type="submit">Send Review</button>
+                  </div>
+                   </form>
+                </div>          
+          </div>
+          <div class="col-sm-4">
+            <div class="clearfix"></div>
+            <aside class="right-sidebar">
+
+              <div class="widget">
+                <h5 class="widgetheading">Welcome to review session<span></span></h5>
+
+                <ul class="contact-info">
+                  <li>Your review is very importent to us. write your thoughts. We will get back to you.</li>
+                  <li>For register your review. You need to enter the <u><b>Code</b></u> which is in the Delivery box.</li>
+                </ul>
+
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% include "include/footer.html" %}
+</div>
+
+<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>
+<!-- javascript-->
+<!-- Placed at the end of the document for pages load faster -->
+  <script src="{% static 'js/jquery.js'%}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{% static 'js/bootstrap.js'%}"></script>
+
+  <script src="{% static 'js/modernizr.custom.js'%}"></script>
+  <script src="{% static 'js/toucheffects.js'%}"></script>
+  <script src="{% static 'js/google-code-prettify/prettify.js'%}"></script>
+  <script src="{% static 'js/jquery.bxslider.min.js'%}"></script>
+  <!-- parallax slider -->
+  <script src="{% static 'js/modernizr.custom.js'%}"></script>
+  <script src="{% static 'js/jquery.cslider.js'%}"></script>
+
+  <script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
+  <script src="{% static 'js/portfolio/jquery.quicksand.js'%}"></script>
+  <script src="{% static 'js/portfolio/setting.js'%}"></script>
+
+  <script src="{% static 'js/jquery.flexslider.js'%}"></script>
+  <script src="{% static 'js/animate.js'%}"></script>
+  <script src="{% static 'js/inview.js'%}"></script>
+  <script>
+    var div = document.getElementById("detail");
+    div.style.display = "none";
+    $(function() {
+      $('#da-slider').cslider();
+    });  
+    function showhide()
+    {  
+         if (div.style.display !== "none") 
+         {  
+             div.style.display = "none";  
+         }  
+         else
+         {  
+             div.style.display = "block";  
+         }  
+    }  
+  </script> 
+<!-- Template Custom JavaScript File -->
+<script src="{% static 'js/custom.js'%}"></script>
+</body>
+</html>

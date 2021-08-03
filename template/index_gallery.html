@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+   <!--bootstrap-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/flexslider.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/camera.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/jquery.bxslider.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+
+  <!-- Theme skin -->
+  <link href="{% static 'color/default.css'%}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'ico/apple-touch-icon-144-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed'%}" sizes="114x114" href="{% static 'ico/apple-touch-icon-114-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'ico/apple-touch-icon-72-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" href="{% static 'ico/apple-touch-icon-57-precomposed.png'%}" />
+  <link rel="shortcut icon" href="{% static 'ico/favicon.png'%}" />
+</head>
+
+<body>
+<div id="wrapper">
+<!-- start header -->
+{% include "include/header.html" %}
+<!-- end header -->
+</div>
+<!--Search -->
+  <center>
+<div class = "input-group">
+  <form method="post" action="homesearch">{% csrf_token %}
+    <div class = "input-group input-group-lg">
+      <input type = "text" class = "form-control" name="key" placeholder = "Search">
+      <span class = "input-group-addon glyphicon-name"><button type="submit" class="icon-circled icon-bglight icon-1x"></button></span>
+    </div>
+  </form> 
+</div>
+  </center>
+
+<!--search ends-->
+<!-- /section featured -->
+  <section id="works">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <h4 class="title">Recent <strong></strong></h4>
+        <div class="row">
+          {% for value in pvalue %}
+          {% if value.status == 1 %}
+          <div class="grid cs-style-4">
+            <div class="span3">
+              <div class="item">
+                <figure>
+                  <div><img src="media/{{value.pimg1}}" alt="" /></div>
+                <figcaption>
+                  <div>
+                    <span>
+                    <a href="media/{{value.pimg1}}" data-pretty="prettyPhoto[gallery1]" title="{{value.pname}}"><i class="icon-plus icon-circled icon-bglight icon-2x"></i></a>
+                    <p><font color=white>View Image</font></p>
+                    </span>
+                    <span>
+                      <form action="viewWindow" method="POST">{% csrf_token %} 
+                        <input type="hidden"  name="key" value="{{ value.id }}">
+                        <button class="icon-file icon-circled icon-bglight icon-2x"  type="submit"></button>
+                      </form>
+                       <p><font color=white>Shop Now</font></p>                       
+                    </span>
+                  </div>
+                </figcaption>
+                  </figure>
+                    {% if value.count == 0 %}
+                    <p><font color=red> SOLD OUT </font></p>
+                    {% else %}
+                    <br/>
+                    <center><p>{{value.pname}}</br>Price: {{value.pprice}}/-</p></center>
+                    {% endif %}
+              </div>
+            </div>           
+          </div>
+            {% endif %}
+                
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+<!--footer start--> 
+    {% include "include/footer.html" %}
+<!--footer end-->    
+  <a href="#" class="scrollup"><i class="{% static 'icon-angle-up icon-square icon-bglight icon-2x'%}"></i></a>
+<!-- javascript -->
+<!-- Placed at the end of the document for pages load faster -->
+  <script src="{% static 'js/jquery.js'%}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{% static 'js/bootstrap.js'%}"></script>
+
+  <script src="{% static 'js/modernizr.custom.js'%}"></script>
+  <script src="{% static 'js/toucheffects.js'%}"></script>
+  <script src="{% static 'js/google-code-prettify/prettify.js'%}"></script>
+  <script src="{% static 'js/jquery.bxslider.min.js'%}"></script>
+  <script src="{% static 'js/camera/camera.js'%}"></script>
+  <script src="{% static 'js/camera/setting.js'%}"></script>
+
+  <script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
+  <script src="{% static 'js/portfolio/jquery.quicksand.js'%}"></script>
+  <script src="{% static 'js/portfolio/setting.js'%}"></script>
+
+  <script src="{% static 'js/jquery.flexslider.js'%}"></script>
+  <script src="{% static 'js/animate.js'%}"></script>
+  <script src="{% static 'js/inview.js'%}"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="{% static 'js/custom.js'%}"></script>
+
+</body>
+</html>
+ 

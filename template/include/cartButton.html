@@ -1,0 +1,60 @@
+      <div class="form-group">
+        <button class="btn-primary btn-lg" onclick="showhide()"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+        </button>
+      </div>
+    <div class="container " id="detail">
+      <form action="orderitem" method="POST">  
+         {% csrf_token %} 
+         {% for message in messages %}
+          <p><font color=red>{{message}}</font></p>
+         {% endfor %} 
+        <div class="row">
+          <div class="form-group">
+            <h1>Shipping Address</h1>
+          </div>
+          <div class="solid"><br/>  
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="name" placeholder="Full Name" required="required">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="Hname" placeholder="House Name" required="required">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="Postoffice" placeholder="Post Office" required="required">
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control-static" name="pin" placeholder="Pin Code" required="required">
+            </div> 
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="Landmark" placeholder="Landmark" required="required">
+            </div> 
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="City" placeholder="City" required="required">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="district" placeholder="District" required="required">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control-static" name="state" placeholder="State" required="required">
+            </div>
+             <div class="form-group">
+              <input type="text" class="form-control-static" name="country" placeholder="Country" required="required">
+            </div>
+             <div class="form-group">
+              <input type="number" class="form-control-static" name="mob" placeholder="Mob Number" required="required">
+            </div>
+             <div class="form-group">
+              <input type="email" class="form-control-static" name="email" placeholder="E-mail" required="required">
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control-static" name="qun" placeholder="Quantity" required="required">
+            </div> 
+          <div class="form-group">
+            <label class="checkbox-inline"><input type="checkbox" value={{obj.code}} name="id" required="required"> I accept the Terms of Use &amp; Privacy Policy</label>
+          </div>  
+          <div class="form-group">
+            <button id="placeOrder" class="btn-lg btn-info">Place Order</button>   
+          </div>  
+        </div>   
+      </form>
+    </div>
